@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Create Post</ion-title>
+    <ion-buttons slot="end" (click)="submitPost()">
+      <ion-button color="primary">Post</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list class="content-flex">
+    <ion-item>
+      <ion-select placeholder="Select Forum" [(ngModel)]="forum">
+        <ion-select-option value="Computer Science"
+          >Computer Science</ion-select-option
+        >
+        <ion-select-option value="Psychology">Psychology</ion-select-option>
+        <ion-select-option value="Mechanical Engineering"
+          >Mechanical Engineering</ion-select-option
+        >
+        <ion-select-option value="Architecture">Architecture</ion-select-option>
+        <ion-select-option value="Philosophy">Philosophy</ion-select-option>
+        <ion-select-option value="Off Topic">Off Topic</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        type="text"
+        placeholder="Enter post title"
+        [(ngModel)]="title"
+      ></ion-input>
+    </ion-item>
+    <ion-item class="flex-item">
+      <ion-textarea
+        rows="10"
+        placeholder="Enter post content"
+        [(ngModel)]="content"
+      ></ion-textarea>
+    </ion-item>
+  </ion-list>
+</ion-content>

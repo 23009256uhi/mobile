@@ -1,0 +1,47 @@
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  .back-button {
+    position: absolute;
+    left: 10px;
+    top: 0px;
+  }
+
+  .logo-container {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px 0;
+
+      .circle {
+        width: 100px;
+        height: 100px;
+        background-color: #ff6314;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .initials {
+          color: white;
+          font-size: 36px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+.signup-prompt {
+  font-size: 16px;
+  color: var(--ion-color-primary);
+}

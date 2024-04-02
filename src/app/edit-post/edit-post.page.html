@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Edit Post</ion-title>
+    <ion-buttons slot="end" (click)="submitChanges()">
+      <ion-button color="primary">Submit Changes</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list class="content-flex">
+    <ion-item>
+      <ion-select placeholder="Select Forum" [(ngModel)]="forum">
+        <ion-select-option value="Computer Science"
+          >Computer Science</ion-select-option
+        >
+        <ion-select-option value="forum2">Forum 2</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        type="text"
+        placeholder="Enter post title"
+        [(ngModel)]="title"
+      ></ion-input>
+    </ion-item>
+    <ion-item class="flex-item">
+      <ion-textarea
+        rows="10"
+        placeholder="Enter post content"
+        [(ngModel)]="content"
+      ></ion-textarea>
+    </ion-item>
+  </ion-list>
+</ion-content>

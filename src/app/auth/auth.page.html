@@ -1,0 +1,58 @@
+<ion-header>
+  <div class="header-container">
+    <ion-buttons slot="start" class="back-button">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      <div class="logo-container">
+        <div class="logo">
+          <div class="circle">
+            <span class="initials">SC</span>
+          </div>
+        </div>
+      </div>
+    </ion-title>
+  </div>
+  <p class="signup-prompt ion-text-center" (click)="toggleMode()">
+    {{isLoginMode ? "New user? Sign up!" : "Already have an account? Log in!"}}
+  </p>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding-horizontal">
+  <!-- LOG IN + SIGN UP -->
+  <ion-list>
+    <ion-item>
+      <ion-input
+        type="text"
+        placeholder="Email"
+        [(ngModel)]="email"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="!isLoginMode">
+      <ion-input
+        type="text"
+        placeholder="Username"
+        [(ngModel)]="username"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        type="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+      ></ion-input>
+    </ion-item>
+
+    <!-- <ion-item *ngIf="!isLoginMode">
+      <ion-input type="password" placeholder="Repeat Password"></ion-input>
+    </ion-item> -->
+  </ion-list>
+  <ion-button
+    expand="full"
+    class="auth-btn"
+    (click)="isLoginMode ? login() : signup()"
+    >{{isLoginMode ? 'Log In' : 'Sign Up'}}</ion-button
+  >
+</ion-content>

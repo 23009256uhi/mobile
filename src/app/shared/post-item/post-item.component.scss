@@ -1,0 +1,56 @@
+.post-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post-edit-buttons {
+  height: 30px;
+}
+
+.post-title {
+  font-weight: 600;
+}
+
+.post-forum-date {
+  margin-bottom: 10px;
+}
+
+.actions-div {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.post-actions,
+.comment-div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: #00000040 solid 1px;
+  padding: 6px 10px;
+  border-radius: 20px;
+}
+
+.likes-div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.divider {
+  border-left: 1px solid #000;
+  height: 20px;
+  display: inline-block;
+  margin: 0 8px;
+  vertical-align: middle;
+}
+
+.liked {
+  color: red;
+}
+
+.disliked {
+  color: blue;
+}

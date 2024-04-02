@@ -1,0 +1,24 @@
+<div class="actions-div">
+  <div class="post-actions">
+    <div class="likes-div">
+      <ion-icon
+        [class.liked]="hasLiked(post)"
+        name="thumbs-up-outline"
+        (click)="toggleLikesDislikes(postId, 'likes')"
+      ></ion-icon>
+      <span *ngIf="post.likes - post.dislikes > 0">{{
+        post.likes - post.dislikes
+      }}</span>
+    </div>
+    <span class="divider"></span>
+    <ion-icon
+      [class.disliked]="hasDisliked(post)"
+      name="thumbs-down-outline"
+      (click)="toggleLikesDislikes(postId, 'dislikes')"
+    ></ion-icon>
+  </div>
+  <div class="comment-div">
+    <ion-icon name="chatbubbles-outline"></ion-icon>
+    <span>{{ post.commentCount }}</span>
+  </div>
+</div>

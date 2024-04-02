@@ -1,0 +1,31 @@
+<ion-list>
+  <ion-item>
+    <ion-label>
+      <div>
+        <div class="post-div">
+          <p class="post-forum-date">
+            {{ post.forum }} - {{ post.timestamp.toDate() | date : "medium" }}
+          </p>
+          <div
+            class="post-edit-buttons"
+            *ngIf="post.author === auth.currentUser?.displayName"
+          >
+            <ion-button fill="clear" (click)="editPost(post.id)"
+              >Edit</ion-button
+            >
+            <ion-button fill="clear" (click)="cancelPost(post.id)"
+              >Cancel</ion-button
+            >
+          </div>
+        </div>
+        <div (click)="openPost(post)">
+          <h2 class="post-title">{{ post.title }}</h2>
+          <p>{{ post.content }}</p>
+        </div>
+      </div>
+
+      <!-- Thumbs + Comment count -->
+      <app-thumbs [post]="post" [postId]="post.id"> </app-thumbs>
+    </ion-label>
+  </ion-item>
+</ion-list>

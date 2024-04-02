@@ -1,0 +1,41 @@
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.width {
+  width: 100%;
+}
+
+.gap {
+  gap: 2px;
+}
+
+.menu-label {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.create-chat {
+  color: var(--ion-color-primary);
+}
+
+.menu-content {
+  flex-direction: column;
+  height: 100%;
+}
+
+// .menu-items {
+//   flex: 1; /* Makes the menu items section grow and take available space */
+// }
+
+// .menu-log-out {
+//   margin-top: auto; /* Pushes the log-out button to the bottom */
+// }

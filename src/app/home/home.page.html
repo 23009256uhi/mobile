@@ -1,20 +1,49 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-toolbar [showBackButton]="false"></app-toolbar>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-list>
+    <app-post-item
+      *ngFor="let post of posts | async"
+      [post]="post"
+    ></app-post-item>
+  </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons class="footer-btns">
+      <ion-button>
+        <div class="footer-btn">
+          <ion-icon
+            name="{{ router.url === '/home' ? 'home' : 'home-outline' }}"
+            class="footer-icon"
+          ></ion-icon>
+          <ion-label>Home</ion-label>
+        </div>
+      </ion-button>
+
+      <ion-button>
+        <div class="footer-btn" (click)="navigateToCreatePost()">
+          <ion-icon
+            name="{{ router.url === '/create' ? 'create' : 'create-outline' }}"
+            class="footer-icon"
+          ></ion-icon>
+          <ion-label>Create</ion-label>
+        </div>
+      </ion-button>
+
+      <ion-button>
+        <div class="footer-btn" (click)="navigateToInbox()">
+          <ion-icon
+            name="{{ router.url === '/inbox' ? 'mail' : 'mail-outline' }}"
+            class="footer-icon"
+          ></ion-icon>
+          <ion-label>Inbox</ion-label>
+          <ion-badge *ngIf="unreadNotificationsCount > 0"
+            >{{ unreadNotificationsCount }}</ion-badge
+          >
+        </div>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

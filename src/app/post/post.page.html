@@ -1,0 +1,78 @@
+<app-toolbar [showBackButton]="true" [title]="title"></app-toolbar>
+
+<ion-content [fullscreen]="true">
+  <ion-item *ngIf="post$ | async as post">
+    <ion-label>
+      <div>
+        <div class="post-author-date">
+          <div class="icon-author">
+            <ion-icon
+              slot="icon-only"
+              name="person-circle"
+              class="user-icon"
+            ></ion-icon>
+            <p class="post-author">{{ post.author }}</p>
+          </div>
+          <span class="post-date"
+            >{{ post.timestamp.toDate() | date: 'medium' }}</span
+          >
+        </div>
+        <h2 class="post-title">{{post.title}}</h2>
+        <p>{{post.content}}</p>
+      </div>
+
+      <!-- Thumbs + Comment count -->
+      <app-thumbs [post]="post" [postId]="postId"> </app-thumbs>
+    </ion-label>
+  </ion-item>
+  <ion-list *ngIf="comments$ | async as comments">
+    <ion-list-header>Comments</ion-list-header>
+    <ion-item *ngFor="let comment of comments">
+      <ion-label>
+        <div class="comment-icon-author">
+          <ion-icon
+            slot="icon-only"
+            name="person-circle"
+            class="user-icon"
+          ></ion-icon>
+          <h2 class="comment-author">{{ comment.author }}</h2>
+        </div>
+        <p>{{ comment.content }}</p>
+      </ion-label>
+
+      <!-- Edit and Delete buttons -->
+      <ion-buttons
+        slot="end"
+        *ngIf="comment.author === auth.currentUser?.displayName && editingCommentId !== comment.id "
+      >
+        <ion-button (click)="startEditComment(comment)">Edit</ion-button>
+        <ion-button (click)="deleteComment(comment.id)">Delete</ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <!-- Add comment -->
+  <ion-toolbar *ngIf="!editingCommentId">
+    <ion-item>
+      <ion-input
+        type="text"
+        placeholder="Write a comment..."
+        [(ngModel)]="newComment"
+        (focus)="onFocus()"
+        (blur)="isInputFocused = false"
+      ></ion-input>
+    </ion-item>
+    <ion-button slot="end" (click)="submitComment()">Reply </ion-button>
+  </ion-toolbar>
+
+  <!-- Edit comment -->
+  <ion-toolbar *ngIf="editingCommentId">
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="editedCommentContent"></ion-input>
+    </ion-item>
+    <ion-button (click)="editComment()">Save</ion-button>
+    <ion-button (click)="cancelEdit()">Cancel</ion-button>
+  </ion-toolbar>
+</ion-footer>

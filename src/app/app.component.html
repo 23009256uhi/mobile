@@ -1,3 +1,85 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane contentId="main-content">
+    <ion-menu menuId="mainMenu" contentId="main-content">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Menu Content</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <!-- buttons -->
+        <div class="menu-content flex space-between">
+          <div class="menu-items">
+            <ion-list>
+              <ion-list-header (click)="toggleDepartments()">
+                <div class="flex align-center space-between width">
+                  <ion-label class="menu-label">Departments</ion-label>
+                  <ion-icon
+                    [name]="
+                      showDepartments ? 'chevron-down' : 'chevron-forward'
+                    "
+                  ></ion-icon>
+                </div>
+              </ion-list-header>
+              <!-- </ion-buttons> -->
+              <ion-menu-toggle auto-hide="false" *ngIf="showDepartments">
+                <ion-item (click)="openDepartment('Computer Science')">
+                  <ion-label>Computer Science</ion-label>
+                </ion-item>
+                <ion-item (click)="openDepartment('Psychology')">
+                  <ion-label>Pyschology</ion-label>
+                </ion-item>
+                <ion-item (click)="openDepartment('Mechanical Engineering')">
+                  <ion-label>Mechanical Engineering</ion-label>
+                </ion-item>
+                <ion-item (click)="openDepartment('Architecture')">
+                  <ion-label>Architecture</ion-label>
+                </ion-item>
+                <ion-item (click)="openDepartment('Philosophy')">
+                  <ion-label>Philosophy</ion-label>
+                </ion-item>
+                <ion-item (click)="openDepartment('Off Topic')">
+                  <ion-label>Off Topic</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+            <ion-list>
+              <ion-list-header (click)="toggleChats()">
+                <div class="flex align-center space-between width">
+                  <ion-label class="menu-label">Chats</ion-label>
+                  <ion-icon
+                    [name]="showChats ? 'chevron-down' : 'chevron-forward'"
+                  ></ion-icon>
+                </div>
+              </ion-list-header>
+              <ion-menu-toggle auto-hide="false" *ngIf="showChats">
+                <ion-item (click)="openCreateChat()">
+                  <div class="flex align-center gap create-chat">
+                    <ion-icon slot="start" name="add"></ion-icon
+                    ><ion-label>Create chat</ion-label>
+                  </div>
+                </ion-item>
+                <ion-item
+                  *ngFor="let chatRoom of chatRooms$ | async"
+                  (click)="openChatRoom(chatRoom.id)"
+                >
+                  <ion-label>{{ chatRoom.name }}</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+          </div>
+
+          <!-- Log-out button at the bottom -->
+          <div class="menu-log-out" *ngIf="isLoggedIn">
+            <ion-item (click)="logOut()" lines="none">
+              <ion-icon slot="start" name="log-out"></ion-icon>
+              <ion-label>Log Out</ion-label>
+            </ion-item>
+          </div>
+        </div>
+      </ion-content>
+    </ion-menu>
+
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>
